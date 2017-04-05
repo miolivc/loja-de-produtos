@@ -20,15 +20,42 @@ import java.util.List;
  * @author miolivc
  */
 public class VendaManager {
-    VendaDao daoMongo = null;
-    VendaDao daoNeo4J = null;
+    VendaDao vendaDaoMongo = null;
+    VendaDao vendaDaoNeo4J = null;
     
     public VendaManager(){
-        daoMongo = new VendaDaoMongo();
-        daoNeo4J = new VendaDaoNeo4J();
+        vendaDaoMongo = new VendaDaoMongo();
+        vendaDaoNeo4J = new VendaDaoNeo4J();
     }
     
     public void add(int codigo, List<Produto> produtos, Cliente cliente, LocalDate data, LocalTime hora){
         Venda venda = new Venda();
+        venda.setCodigo(codigo);
+        venda.setCliente(cliente);
+        venda.setProdutos(produtos);
+        venda.setData(data);
+        venda.setHora(hora);
+        vendaDaoMongo.add(venda);
+        vendaDaoNeo4J.add(venda);
+    }
+    
+    public void update(int codigo, List<Produto> produtos, Cliente cliente, LocalDate data, LocalTime hora){
+        this.delete(codigo);
+        this.add(codigo, produtos, cliente, data, hora);
+    }
+    
+    public void delete(int codigo){
+        vendaDaoMongo.delete(codigo);
+        vendaDaoNeo4J.delete(codigo);
+    }
+    
+    public List<Venda> list(){
+        List<Venda> vendas = vendaDaoMongo.list();
+        return vendas;
+    }
+    
+    public Venda find(int codigo){
+        Venda venda = vendaDaoMongo.find(codigo);
+        return venda;
     }
 }
