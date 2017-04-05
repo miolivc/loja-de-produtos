@@ -22,6 +22,10 @@ public class Cliente extends Pessoa {
         this.password = password;
     }
 
+    public Cliente() {
+        super(null, null, null, null);
+    }
+    
     public String getEmail() {
         return email;
     }

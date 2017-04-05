@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifpb.bdnc.loja.de.produtos.factory;
+package br.edu.ifpb.bdnc.loja.de.produtos.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
  *
  * @author miolivc
  */
-public class ConnectionFactory {
+public class PostgresConnection {
     private static final String url = "jdbc:postgresql://localhost:5432/loja-de-produtos";
     private static final String user = "postgres";
     private static final String password = "postgres";

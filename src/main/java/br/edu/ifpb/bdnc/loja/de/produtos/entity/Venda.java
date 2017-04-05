@@ -15,7 +15,7 @@ import java.util.List;
  * @author miolivc
  */
 public class Venda {
-    private static int codigo = 0;
+    private int codigo;
     private List<Produto> produtos;
     private Cliente cliente;
     private LocalDate data;
@@ -23,7 +23,7 @@ public class Venda {
     private float valorTotal;
     
     public Venda(){
-        Venda.codigo++;
+        this.codigo = codigo;
         this.produtos = new ArrayList<>();
         this.cliente = cliente;
         this.data = LocalDate.now();
@@ -31,16 +31,20 @@ public class Venda {
         this.valorTotal = 0;
     }
 
-    public static int getCodigo() {
+    public int getCodigo() {
         return codigo;
+    }
+    
+    public void setCodigo(int codigo){
+        this.codigo = codigo;
     }
 
     public List<Produto> getProdutos() {
         return produtos;
     }
-
-    public static void setCodigo(int codigo) {
-        Venda.codigo = codigo;
+    
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
 
     public Cliente getCliente() {

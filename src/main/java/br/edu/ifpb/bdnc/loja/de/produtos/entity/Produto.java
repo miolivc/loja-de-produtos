@@ -10,35 +10,42 @@ package br.edu.ifpb.bdnc.loja.de.produtos.entity;
  * @author miolivc
  */
 public class Produto {
-    private static int codigo = 0;
-    private int nome;
-    private int descricao;
+    private int codigo;
+    private String nome;
+    private String descricao;
     private float valor;
 
-    public Produto(int nome, int descricao, float valor) {
-        Produto.codigo++;
+    public Produto(int codigo, String nome, String descricao, float valor) {
+        this.codigo = codigo;
         this.nome = nome;
         this.descricao = descricao;
         this.valor = valor;
     }
 
-    public static int getCodigo() {
+    public Produto() {
+    }
+    
+    public int getCodigo() {
         return codigo;
     }
+    
+    public void setCodigo(int codigo){
+        this.codigo = codigo;
+    }
 
-    public int getDescricao() {
+    public String getDescricao() {
         return descricao;
     }
 
-    public void setDescricao(int descricao) {
+    public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
-    public int getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(int nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
