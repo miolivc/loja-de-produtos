@@ -5,9 +5,9 @@
  */
 package br.edu.ifpb.bdnc.loja.de.produtos.manager;
 
-import br.edu.ifpb.bdnc.loja.de.produtos.dao.implementation.ClienteDaoPostgres;
 import br.edu.ifpb.bdnc.loja.de.produtos.dao.model.ClienteDao;
 import br.edu.ifpb.bdnc.loja.de.produtos.entity.Cliente;
+import br.edu.ifpb.bdnc.loja.de.produtos.factory.DaoFactory;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
@@ -17,10 +17,10 @@ import java.util.List;
  * @author miolivc
  */
 public class ClienteManager {
-    ClienteDao clienteDao = null;
+    ClienteDao clienteDao;
 
     public ClienteManager() throws SQLException, ClassNotFoundException {
-        clienteDao = new ClienteDaoPostgres();
+        clienteDao = DaoFactory.createFactory(DaoFactory.POSTGRES).createClienteDao();
     }
     
     public void add(String email, String password, String cpf, String nome, LocalDate dataNasc,

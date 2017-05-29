@@ -5,9 +5,9 @@
  */
 package br.edu.ifpb.bdnc.loja.de.produtos.manager;
 
-import br.edu.ifpb.bdnc.loja.de.produtos.dao.implementation.ProdutoDaoPostgres;
 import br.edu.ifpb.bdnc.loja.de.produtos.dao.model.ProdutoDao;
 import br.edu.ifpb.bdnc.loja.de.produtos.entity.Produto;
+import br.edu.ifpb.bdnc.loja.de.produtos.factory.DaoFactory;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -16,10 +16,10 @@ import java.util.List;
  * @author miolivc
  */
 public class ProdutoManager {
-    ProdutoDao produtoDao = null;
+    private final ProdutoDao produtoDao;
     
     public ProdutoManager() throws SQLException, ClassNotFoundException{
-        produtoDao = new ProdutoDaoPostgres();
+        produtoDao = DaoFactory.createFactory(DaoFactory.POSTGRES).createProdutoDao();
     }
     
     public void add(int codigo, String nome, String descricao, float valor){

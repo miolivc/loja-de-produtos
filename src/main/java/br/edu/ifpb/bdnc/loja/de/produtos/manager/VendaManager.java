@@ -11,6 +11,7 @@ import br.edu.ifpb.bdnc.loja.de.produtos.dao.model.VendaDao;
 import br.edu.ifpb.bdnc.loja.de.produtos.entity.Cliente;
 import br.edu.ifpb.bdnc.loja.de.produtos.entity.Venda;
 import br.edu.ifpb.bdnc.loja.de.produtos.entity.Produto;
+import br.edu.ifpb.bdnc.loja.de.produtos.factory.DaoFactory;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -20,12 +21,12 @@ import java.util.List;
  * @author miolivc
  */
 public class VendaManager {
-    VendaDao vendaDaoMongo = null;
-    VendaDao vendaDaoNeo4J = null;
+    VendaDao vendaDaoMongo;
+    VendaDao vendaDaoNeo4J;
     
     public VendaManager(){
-        vendaDaoMongo = new VendaDaoMongo();
-        vendaDaoNeo4J = new VendaDaoNeo4J();
+        vendaDaoMongo = DaoFactory.createFactory(DaoFactory.MONGO).createVendaDao();
+        vendaDaoNeo4J = DaoFactory.createFactory(DaoFactory.NEO4J).createVendaDao();
     }
     
     public void add(int codigo, List<Produto> produtos, Cliente cliente, LocalDate data, LocalTime hora){
